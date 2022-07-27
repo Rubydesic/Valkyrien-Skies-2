@@ -12,9 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          fetch-depth: 0
           submodules: true # Clone with vs-core submodule
-
       - uses: gradle/wrapper-validation-action@v1
 
   build:
@@ -26,7 +24,8 @@ jobs:
         with:
           submodules: recursive
 
-      - uses: "./.github/actions/setup-gradle"
+      - name: Setup Gradle & Caches
+        uses: "./.github/actions/setup-gradle"
 
       - name: Build and analyze
         run: ./gradlew build --info
@@ -43,6 +42,7 @@ jobs:
           name: forge artifacts
           path: |
             forge/build/libs/*.jar
+      
       - uses: jwgmeligmeyling/checkstyle-github-action@master # show checkstyle/ktlint report
         with:
           path: |
@@ -64,7 +64,8 @@ jobs:
         with:
           submodules: recursive
 
-      - uses: "./.github/actions/setup-gradle"
+      - name: Setup Gradle & Caches
+        uses: "./.github/actions/setup-gradle"
 
       - name: Test Server
         uses: ValkyrienSkies/Minecraft-Architectury-Testing@v1.9
@@ -84,7 +85,8 @@ jobs:
         with:
           submodules: recursive
 
-      - uses: "./.github/actions/setup-gradle"
+      - name: Setup Gradle & Caches
+        uses: "./.github/actions/setup-gradle"
 
       - name: Publish with Gradle
         env:

@@ -14,7 +14,8 @@ jobs:
         with:
           submodules: recursive
 
-      - uses: "./.github/actions/setup-gradle"
+      - name: Setup Gradle & Caches
+        uses: "./.github/actions/setup-gradle"
 
       - name: Build with Gradle
         env:
