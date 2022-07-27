@@ -3,7 +3,7 @@ name: Public Release on Tag
 on:
   push:
     tags:
-      - 'release-'
+      - 'release-*'
 
 jobs:
   release:
