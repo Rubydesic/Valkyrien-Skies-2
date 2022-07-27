@@ -22,7 +22,8 @@ plugins {
 
 // Determine the version
 if (project.hasProperty("CustomReleaseVersion")) {
-    version = project.property("CustomReleaseVersion") as String
+    // Remove release- from the version if present
+    version = project.property("CustomReleaseVersion").replaceFirst("^release/", "")
 } else {
     // Yes, I know there is a gradle plugin to detect git version.
     // But its made by Palantir 0_0.
