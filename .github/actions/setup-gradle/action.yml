@@ -1,5 +1,5 @@
-name: "Checkout and Setup Gradle"
-description: "Checks out repository, installs java, and restores gradle and build cache"
+name: "Setup Gradle"
+description: "Installs java and restores gradle and build cache"
 
 inputs:
   java_version:
@@ -9,15 +9,12 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - name: Shallow Clone (--recurse-submodules)
-      uses: actions/checkout@v2
-      with:
-        submodules: recursive
     - name: Install JDK ${{ matrix.java }} (Temurin)
       uses: actions/setup-java@v2
       with:
         java-version: ${{ inputs.java_version }}
         distribution: 'temurin'
+
     - name: Cache local .gradle and gradle packages
       uses: actions/cache@v1
       with:

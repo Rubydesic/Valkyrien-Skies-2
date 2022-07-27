@@ -9,7 +9,13 @@ jobs:
   release:
     runs-on: ubuntu-latest
     steps:
-      - uses: "./.github/actions/checkout-and-setup-gradle"
+      - name: Shallow Clone (--recurse-submodules)
+        uses: actions/checkout@v2
+        with:
+          submodules: recursive
+
+      - uses: "./.github/actions/setup-gradle"
+
       - name: Build with Gradle
         env:
           ORG_GRADLE_PROJECT_curse_api_key: ${{ secrets.CURSEFORGE_API_KEY }}
