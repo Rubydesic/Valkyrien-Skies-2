@@ -1,6 +1,7 @@
 plugins {
     id "com.github.johnrengelman.shadow" version "7.1.2"
     id "org.jetbrains.kotlin.jvm"
+    id "com.matthewprenger.cursegradle"
 }
 
 architectury {
@@ -110,6 +111,31 @@ components.java {
     }
 }
 
+// Publish to CurseForge
+
+curseforge {
+    if (project.curse_project_id) {
+        apiKey = project.curse_api_key
+        project {
+            id = project.curse_project_id
+            releaseType = 'alpha'
+            addGameVersion project.minecraft_version
+            addGameVersion "Java 8"
+            addGameVersion "Fabric"
+
+            mainArtifact(remapJar.archiveFile.get().asFile) {
+                displayName = "[Fabric ${project.minecraft_version}] v${project.version}"
+            }
+        }
+    }
+    options {
+        forgeGradleIntegration = false
+        javaVersionAutoDetect = false
+    }
+}
+
+
+// Publish to MAvens
 publishing {
     publications {
         mavenFabric(MavenPublication) {
