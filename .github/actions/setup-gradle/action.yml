@@ -13,9 +13,9 @@ runs:
     - name: Cache local .gradle and gradle packages
       uses: actions/cache@v1
       with:
-        path: |
-          ~/.gradle/caches
-          .gradle
+        path:
+          - "~/.gradle/caches"
+          - "**/.gradle"
         key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
         restore-keys: ${{ runner.os }}-gradle
 
