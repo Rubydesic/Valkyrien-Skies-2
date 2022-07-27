@@ -1,18 +1,13 @@
 name: "Setup Gradle"
 description: "Installs java and restores gradle and build cache"
 
-inputs:
-  java_version:
-    description: "Java version"
-    required: true
-
 runs:
   using: "composite"
   steps:
-    - name: Install JDK ${{ matrix.java }} (Temurin)
+    - name: Install JDK 17 (Temurin)
       uses: actions/setup-java@v2
       with:
-        java-version: ${{ inputs.java_version }}
+        java-version: 17
         distribution: 'temurin'
 
     - name: Cache local .gradle and gradle packages
