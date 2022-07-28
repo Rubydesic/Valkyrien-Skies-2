@@ -29,14 +29,14 @@ curseforge {
     }
 }
 
-//// Publish to Modrinth
-//modrinth {
-//    println(project.modrinth_api_key + project.loader_platform)
-//    token = project.modrinth_api_key
-//    projectId = project.modrinth_project_id
-//    versionType = vsReleaseType
-//    versionNumber = project.version
-//    uploadFile = remapJar
-//    gameVersions = [project.minecraft_version]
-//    loaders = [project.loader_platform]
-//}
+// Publish to Modrinth
+modrinth {
+    token = project.modrinth_api_key
+    projectId = project.modrinth_project_id
+    versionType = vsReleaseType
+    versionName = fileDisplayName
+    versionNumber = "${project.minecraft_version}-${project.loader_platform.toLowerCase()}-${project.version}"
+    uploadFile = remapJar
+    gameVersions = [project.minecraft_version]
+    loaders = [project.loader_platform.toLowerCase()]
+}
