@@ -16,7 +16,7 @@ plugins {
     id "org.jlleitschuh.gradle.ktlint" version "10.3.0"
 
     id 'com.matthewprenger.cursegradle' version '1.4.0' apply false
-    id "com.modrinth.minotaur" version "2.2.0" apply false
+    id "com.modrinth.minotaur" version "2.4.3" apply false
 
     // Java linter
     id "checkstyle"
@@ -53,8 +53,6 @@ subprojects {
     apply plugin: "checkstyle"
     apply plugin: "org.jetbrains.kotlin.jvm"
     apply plugin: "io.github.juuxel.loom-quiltflower"
-    apply plugin: "com.matthewprenger.cursegradle"
-    apply plugin: "com.modrinth.minotaur"
 
     repositories {
         mavenCentral()

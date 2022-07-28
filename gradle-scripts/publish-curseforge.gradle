@@ -10,7 +10,7 @@ def fileDisplayName = "[${project.loader_platform} ${project.minecraft_version}]
 
 // Publish to CurseForge
 curseforge {
-    if (project.curse_project_id) {
+    if (project.curse_api_key) {
         apiKey = project.curse_api_key
         project {
             id = project.curse_project_id
@@ -29,17 +29,14 @@ curseforge {
     }
 }
 
-// Publish to Modrinth
-modrinth {
-    if (project.modrinth_api_key) {
-        token = modrinth_api_key
-        projectId = project.modrinth_project_id
-        versionType = "$rootProject.artifact_type"
-        versionNumber = "$project.version+$project.name"
-        displayName = fileDisplayName
-        changelog = releaseChangelog()
-        uploadFile = remapJar
-        gameVersions = [project.minecraft_version]
-        loaders = [project.loader_platform]
-    }
-}
+//// Publish to Modrinth
+//modrinth {
+//    println(project.modrinth_api_key + project.loader_platform)
+//    token = project.modrinth_api_key
+//    projectId = project.modrinth_project_id
+//    versionType = vsReleaseType
+//    versionNumber = project.version
+//    uploadFile = remapJar
+//    gameVersions = [project.minecraft_version]
+//    loaders = [project.loader_platform]
+//}
