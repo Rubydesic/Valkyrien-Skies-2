@@ -20,6 +20,7 @@ jobs:
       - name: Build with Gradle
         env:
           ORG_GRADLE_PROJECT_curse_api_key: ${{ secrets.CURSEFORGE_API_KEY }}
+          ORG_GRADLE_PROJECT_modrinth_api_key: ${{ secrets.MODRINTH_API_KEY }}
           ORG_GRADLE_PROJECT_CustomReleaseVersion: ${{ github.ref_name }}
         run: |
           ./gradlew modrinth curseforge --stacktrace --no-daemon --continue
